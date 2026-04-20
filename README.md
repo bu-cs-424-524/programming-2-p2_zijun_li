@@ -1,36 +1,84 @@
-# p2_lizijun
+# CS 424/524 Assignment 2 – Intelligent Mobile Robotics
 
-CS 424/524 Assignment 2 repository for:
-1. **Part 1**: autonomous navigation through three user-defined map locations and return to start.
-2. **Part 2**: RGB-D red ball following while maintaining about 1 meter distance.
+## Overview
 
-## Repository structure
-- `launch/`: launch files required by the assignment
-- `script/`: Python ROS nodes
-- `src/`: reserved for C++ source files (left empty intentionally)
-- `misc/`: required assignment materials
-- `config/`: editable parameters for map path and goals
+This project implements autonomous navigation and vision-based tracking on a TurtleBot using ROS.
 
-## Quick use
+The assignment consists of two parts:
+
+* **Part 1:** SLAM-based mapping and autonomous navigation
+* **Part 2:** Vision-based ball following using RGB-D input
+
+---
+
+## Part 1: Mapping and Autonomous Navigation
+
+We first used the ROS GMapping package to build a map of the lab environment.
+The robot was manually driven to explore the environment and generate a map, which was then saved using `map_server`.
+
+Three navigation goals (L1, L2, L3) were defined in the map frame, each separated by at least 8 meters.
+
+The robot autonomously performs the following sequence:
+
+* Start from L1
+* Navigate to L2
+* Navigate to L3
+* Return to L1
+
+Navigation goals are sent programmatically via `/move_base_simple/goal`.
+
+---
+
+## Part 2: Vision-Based Ball Following
+
+A vision-based controller was implemented using RGB and depth images.
+
+### RGB Processing
+
+* The RGB image is processed to detect the most red pixel
+* The position of the red object is used to determine direction
+
+### Depth Processing
+
+* The depth image is used to estimate the distance to the object
+
+### Control Strategy
+
+* If the object is far (>1m): move forward
+* If too close (<1m): move backward
+* If object is left/right: rotate to align
+
+---
+
+## How to Run
+
 ### Part 1
-1. Build a map first using gmapping and save it as a `.yaml` + `.pgm` pair.
-2. Edit `config/p2a_params.yaml`:
-   - set `map_file` to your saved map yaml path
-   - set the `goals` list to your actual L1, L2, L3, and return-to-L1 poses in the AMCL map frame
-3. Launch:
-   ```bash
-   roslaunch p2_lizijun p2a.launch
-   ```
+
+```bash
+roslaunch p2_zijun_li p2a.launch
+```
 
 ### Part 2
-1. Start the robot with cameras connected.
-2. Launch:
-   ```bash
-   roslaunch p2_lizijun p2b.launch
-   ```
-3. Hold a red ball in front of the robot.
+
+```bash
+roslaunch p2_zijun_li p2b.launch
+```
+
+---
 
 ## Notes
-- Part 1 is fully autonomous after startup, but it still depends on a valid saved map and correct goal coordinates for your own lab.
-- Part 2 uses RGB + depth, publishes velocity on `/cmd_vel`, and also publishes a debug image on `/p2b/debug_image`.
-- This package is written in Python to keep deployment simple.
+
+* The map file and navigation goals are configured in `config/p2a_params.yaml`
+* Camera topics may vary depending on hardware setup
+* Ensure all ROS nodes are running before launching navigation
+
+---
+
+## Repository Structure
+
+* `launch/` – launch files
+* `script/` – Python scripts
+* `config/` – parameter files
+* `misc/` – additional required files
+
+---
