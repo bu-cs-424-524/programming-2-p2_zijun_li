@@ -1,0 +1,15 @@
+<launch>
+  <arg name="map_file" default="/absolute/path/to/your_map.yaml" />
+
+  <include file="$(find turtlebot_bringup)/launch/minimal.launch" />
+
+  <include file="$(find turtlebot_navigation)/launch/amcl_demo.launch">
+    <arg name="map_file" value="$(arg map_file)" />
+  </include>
+
+  <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+
+  <node pkg="p2_lizijun" type="p2a_nav_goals.py" name="p2a_nav_goals" output="screen">
+    <rosparam command="load" file="$(find p2_lizijun)/config/p2a_params.yaml" />
+  </node>
+</launch>

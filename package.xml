@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>p2_lizijun</name>
+  <version>0.0.1</version>
+  <description>CS 424/524 Assignment 2 package for autonomous navigation and RGB-D ball following.</description>
+
+  <maintainer email="zli60@binghamton.edu">Zijun Li</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>move_base_msgs</depend>
+  <depend>actionlib_msgs</depend>
+  <depend>tf</depend>
+  <depend>python-numpy</depend>
+  <depend>cv_bridge</depend>
+  <depend>image_transport</depend>
+  <depend>turtlebot_bringup</depend>
+  <depend>turtlebot_navigation</depend>
+  <depend>usb_cam</depend>
+  <depend>astra_launch</depend>
+
+  <export/>
+</package>

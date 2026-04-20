@@ -1,0 +1,11 @@
+Package name: p2_lizijun
+Author: Zijun Li
+Collaborator: none
+
+Part 1:
+- Uses turtlebot_navigation with AMCL and sends PoseStamped goals one at a time.
+- Edit config/p2a_params.yaml to set your own map_file and L1/L2/L3 poses.
+
+Part 2:
+- Uses RGB and depth streams to detect a red ball, estimate distance, and control /cmd_vel.
+- Default target distance is 1 meter.

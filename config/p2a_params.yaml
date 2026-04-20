@@ -1,0 +1,19 @@
+# Edit this file before running Part 1.
+# map_file should point to the map yaml that you created with gmapping.
+map_file: "/Users/apple/Downloads/p2_map.yaml"
+
+
+# Goals are in the map frame.
+# Replace the sample values below with your actual L1/L2/L3 coordinates.
+goals:
+  - {name: "L1_start", x: 0.0, y: 0.0, yaw: 0.0}
+  - {name: "L2",       x: 2.0, y: 0.0, yaw: 0.0}
+  - {name: "L3",       x: 2.0, y: 2.0, yaw: 1.57}
+  - {name: "L1_return",x: 0.0, y: 0.0, yaw: 3.14}
+
+position_tolerance: 0.35
+yaw_tolerance: 0.35
+wait_timeout: 180.0
+goal_topic_delay: 1.0
+goal_republish_interval: 2.0
+frame_id: "map"

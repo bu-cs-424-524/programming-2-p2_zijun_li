@@ -1,0 +1,22 @@
+rgb_topic: "/usb_cam/image_raw"
+depth_topic: "/camera/depth/image_raw"
+cmd_topic: "/cmd_vel"
+debug_topic: "/p2b/debug_image"
+
+target_distance: 1.0
+distance_tolerance: 0.12
+angular_gain: 1.6
+linear_gain: 0.7
+max_linear: 0.22
+max_angular: 1.0
+min_blob_area: 250.0
+control_rate: 10.0
+search_angular_speed: 0.35
+center_deadband: 0.06
+depth_roi: 5
+
+# HSV thresholds for red color segmentation
+lower_red1: [0, 120, 70]
+upper_red1: [10, 255, 255]
+lower_red2: [170, 120, 70]
+upper_red2: [180, 255, 255]
